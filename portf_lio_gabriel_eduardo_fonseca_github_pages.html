@@ -1,0 +1,2682 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121110" />
+    <title data-i18n="meta.title">
+      Gabriel Eduardo Fonseca · GF508 — Desenvolvedor Full Stack
+    </title>
+    <meta
+      name="description"
+      content="Portfólio de Gabriel Eduardo dos Santos Fonseca, Desenvolvedor Full Stack, estagiário na Stefanini Group e estudante de ADS na SPTech."
+    />
+
+    <!-- Fontes Google correspondentes à identidade editorial da referência -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ==========================================================================
+         PALETA DE CORES & TOKENS VISUAIS (TEMA AZUL COBALTO + EDITORIAL ESCURO/CREME)
+         ========================================================================== */
+      :root {
+        /* Fundos principais */
+        --bg-dark: #121110;
+        --bg-dark-elevated: #191816;
+        --bg-paper: #eae4d7;
+        --bg-paper-light: #f4f0e6;
+
+        /* Destaques em Azul (Substituindo o vermelho/carmesim da referência) */
+        --accent-blue: #3b82f6;       /* Azul vibrante para títulos, ícones, botões e itálicos no escuro */
+        --accent-blue-hover: #2563eb; /* Hover do botão principal */
+        --accent-blue-deep: #1e40af;  /* Azul profundo para itálico sobre o fundo creme (#EAE4D7) */
+        --contact-bg: #173566;        /* Azul marinho intenso para a faixa da seção Contato */
+
+        /* Textos e bordas */
+        --text-on-dark: #eae4d7;
+        --text-muted-dark: #a69f93;
+        --text-on-paper: #121110;
+        --text-muted-paper: #4a463f;
+
+        --border-dark: rgba(234, 228, 215, 0.14);
+        --border-blue-subtle: rgba(59, 130, 246, 0.32);
+        --border-paper: rgba(18, 17, 16, 0.16);
+
+        /* Tipografia */
+        --font-display: 'Barlow Condensed', sans-serif;
+        --font-serif: 'Instrument Serif', Georgia, serif;
+        --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+
+        /* Espaçamentos */
+        --container-max: 1180px;
+        --header-height: 76px;
+      }
+
+      /* ==========================================================================
+         RESET & BASE
+         ========================================================================== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--bg-dark);
+        color: var(--text-on-dark);
+        font-family: var(--font-sans);
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--bg-dark);
+        color: var(--text-on-dark);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+
+      .container {
+        width: 100%;
+        max-width: var(--container-max);
+        margin-inline: auto;
+        padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 1rem;
+        z-index: 100;
+        background: var(--accent-blue);
+        color: #ffffff;
+        padding: 0.65rem 1rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: top 0.2s ease;
+      }
+      .skip-link:focus {
+        top: 1rem;
+      }
+
+      /* ==========================================================================
+         HEADER / NAVBAR FIXA
+         ========================================================================== */
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        height: var(--header-height);
+        background-color: rgba(18, 17, 16, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-dark);
+      }
+
+      .header-inner {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.55rem;
+        letter-spacing: 0.02em;
+        color: var(--text-on-dark);
+        text-transform: uppercase;
+      }
+
+      .wordmark-symbol {
+        color: var(--accent-blue);
+        font-size: 0.85rem;
+        line-height: 1;
+      }
+
+      .wordmark-dot {
+        color: var(--accent-blue);
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-muted-dark);
+      }
+
+      .main-nav a:not(.nav-contact) {
+        position: relative;
+        padding-block: 0.35rem;
+        transition: color 0.2s ease;
+      }
+
+      .main-nav a:not(.nav-contact):hover,
+      .main-nav a:not(.nav-contact).active {
+        color: var(--text-on-dark);
+      }
+
+      .main-nav a:not(.nav-contact).active::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background-color: var(--accent-blue);
+      }
+
+      .nav-contact {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.65rem 1.25rem;
+        border: 1px solid var(--border-blue-subtle);
+        color: var(--text-on-dark);
+        font-weight: 600;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+      }
+
+      .nav-contact:hover {
+        border-color: var(--accent-blue);
+        background-color: rgba(59, 130, 246, 0.12);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .language-toggle {
+        min-width: 2.75rem;
+        height: 2.5rem;
+        padding-inline: 0.75rem;
+        background: transparent;
+        border: 1px solid var(--border-dark);
+        color: var(--text-on-dark);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        transition: border-color 0.2s ease, color 0.2s ease;
+      }
+
+      .language-toggle:hover {
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: transparent;
+        border: 1px solid var(--border-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background-color: var(--text-on-dark);
+        transition: transform 0.2s ease;
+      }
+
+      /* ==========================================================================
+         SEÇÃO 1: HERO (#inicio)
+         ========================================================================== */
+      .hero {
+        min-height: 100vh;
+        padding-top: calc(var(--header-height) + 3.5rem);
+        padding-bottom: 5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: clamp(2.5rem, 6vw, 5rem);
+        width: 100%;
+      }
+
+      .hero-copy h1 {
+        margin: 0 0 1.75rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(4.25rem, 9.5vw, 7.6rem);
+        line-height: 0.88;
+        letter-spacing: -0.015em;
+        text-transform: uppercase;
+        color: var(--text-on-dark);
+      }
+
+      .hero-copy h1 span {
+        display: block;
+      }
+
+      .hero-copy h1 .surname {
+        color: var(--accent-blue);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.22em;
+      }
+
+      .hero-title-star {
+        color: var(--text-on-dark);
+        font-size: 0.48em;
+        font-weight: 400;
+        line-height: 1;
+        transform: translateY(0.04em);
+      }
+
+      .hero-description {
+        margin: 0 0 2.25rem;
+        max-width: 34rem;
+        font-size: clamp(1rem, 1.3vw, 1.125rem);
+        color: var(--text-muted-dark);
+        line-height: 1.65;
+      }
+
+      .hero-description strong {
+        color: var(--text-on-dark);
+        font-weight: 700;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.75rem;
+        margin-bottom: 2.25rem;
+      }
+
+      .button-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1rem 1.65rem;
+        background-color: var(--accent-blue);
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.9rem;
+        border: 1px solid var(--accent-blue);
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .button-primary:hover {
+        background-color: var(--accent-blue-hover);
+        transform: translateY(-2px);
+      }
+
+      .hero-github {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-on-dark);
+        transition: color 0.2s ease;
+      }
+
+      .hero-github:hover {
+        color: var(--accent-blue);
+      }
+
+      .hero-contact {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.5rem;
+        font-size: 0.875rem;
+        color: var(--text-muted-dark);
+      }
+
+      .hero-email {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        transition: color 0.2s ease;
+      }
+
+      .hero-email svg {
+        color: var(--accent-blue);
+      }
+
+      .hero-email:hover {
+        color: var(--text-on-dark);
+      }
+
+      .hero-resume {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-on-dark);
+        font-weight: 600;
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid var(--accent-blue);
+        transition: color 0.2s ease;
+      }
+
+      .hero-resume span[aria-hidden] {
+        color: var(--accent-blue);
+      }
+
+      .hero-resume:hover {
+        color: var(--accent-blue);
+      }
+
+      /* Retrato Editorial em Moldura Inclinada com Raios e Selo */
+      .portrait-poster {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+
+      .portrait-rays {
+        position: absolute;
+        inset: -18%;
+        width: 136%;
+        height: 136%;
+        max-width: none;
+        pointer-events: none;
+        opacity: 0.35;
+        z-index: 0;
+      }
+
+      .poster-paper {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        width: min(370px, 84vw);
+        background-color: var(--bg-paper);
+        padding: 12px;
+        transform: rotate(-2.5deg);
+        box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65);
+        transition: transform 0.35s ease;
+      }
+
+      .poster-paper:hover {
+        transform: rotate(0deg) scale(1.015);
+      }
+
+      .poster-photo {
+        position: relative;
+        aspect-ratio: 4 / 4.4;
+        background-color: #1c1b19;
+        overflow: hidden;
+      }
+
+      .poster-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        filter: grayscale(100%) contrast(1.12);
+      }
+
+      /* Textura halftone sutil sobre a foto */
+      .photo-halftone {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(18, 17, 16, 0.25) 1px, transparent 1px);
+        background-size: 4px 4px;
+        pointer-events: none;
+        mix-blend-mode: multiply;
+      }
+
+      .portrait-seal {
+        position: absolute;
+        right: 0.25rem;
+        bottom: 0.25rem;
+        z-index: 2;
+        width: 112px;
+        height: 112px;
+        pointer-events: none;
+        animation: spinSlow 36s linear infinite;
+      }
+
+      @keyframes spinSlow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      /* ==========================================================================
+         SEÇÃO 2: SOBRE MIM (#sobre — FUNDO PAPEL CREME #EAE4D7)
+         ========================================================================== */
+      .about {
+        position: relative;
+        background-color: var(--bg-paper);
+        color: var(--text-on-paper);
+        padding-block: clamp(5rem, 9vw, 7.5rem);
+        overflow: hidden;
+      }
+
+      /* Marca d'água geométrica central (losango duplo) */
+      .about-watermark {
+        position: absolute;
+        top: 50%;
+        left: 42%;
+        transform: translate(-50%, -50%);
+        width: 260px;
+        height: 260px;
+        pointer-events: none;
+        opacity: 0.16;
+      }
+
+      .about-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: clamp(2.5rem, 6vw, 5rem);
+        align-items: start;
+      }
+
+      .about-heading h2 {
+        margin: 0 0 2.5rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.25rem, 6vw, 4.75rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+        color: var(--text-on-paper);
+      }
+
+      .about-heading h2 em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.95em;
+        text-transform: lowercase;
+        color: var(--accent-blue-deep);
+      }
+
+      /* Linha do tempo vertical à esquerda */
+      .about-journey {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+      }
+
+      .about-journey::before {
+        content: '';
+        position: absolute;
+        left: 19px;
+        top: 20px;
+        bottom: 20px;
+        width: 1px;
+        background-color: rgba(30, 64, 175, 0.35);
+      }
+
+      .about-journey li {
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+
+      .about-journey li:last-child {
+        margin-bottom: 0;
+      }
+
+      .about-journey a {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+        align-items: center;
+      }
+
+      .journey-mark {
+        grid-row: 1 / 3;
+        width: 40px;
+        height: 40px;
+        background-color: var(--bg-paper);
+        border: 1px solid rgba(30, 64, 175, 0.45);
+        color: var(--accent-blue-deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .about-journey a:hover .journey-mark {
+        background-color: var(--accent-blue-deep);
+        color: #ffffff;
+      }
+
+      .journey-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text-on-paper);
+      }
+
+      .journey-detail {
+        font-size: 0.825rem;
+        color: var(--text-muted-paper);
+      }
+
+      .about-copy {
+        padding-top: 0.35rem;
+      }
+
+      .about-copy .lead {
+        margin: 0 0 1.5rem;
+        font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+        line-height: 1.45;
+        color: var(--text-on-paper);
+      }
+
+      .about-copy .lead strong {
+        color: var(--accent-blue-deep);
+        font-weight: 700;
+      }
+
+      .about-copy p {
+        margin: 0 0 1.25rem;
+        font-size: 0.975rem;
+        color: var(--text-muted-paper);
+        line-height: 1.75;
+      }
+
+      /* ==========================================================================
+         SEÇÃO 3: PROJETOS (#projetos — FUNDO ESCURO #121110)
+         ========================================================================== */
+      .section {
+        padding-block: clamp(5rem, 9vw, 7.5rem);
+      }
+
+      .section-heading {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
+
+      .section-heading h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.25rem, 6vw, 4.75rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+        color: var(--text-on-dark);
+      }
+
+      .section-heading h2 em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.95em;
+        text-transform: lowercase;
+        color: var(--accent-blue);
+      }
+
+      .section-heading p {
+        margin: 0;
+        max-width: 24rem;
+        font-size: 0.95rem;
+        color: var(--text-muted-dark);
+      }
+
+      .project {
+        padding-bottom: 4.5rem;
+        margin-bottom: 4.5rem;
+        border-bottom: 1px solid var(--border-dark);
+      }
+
+      .project:last-of-type {
+        margin-bottom: 2.5rem;
+      }
+
+      .project-heading {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .project-heading h3 {
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(2.35rem, 4.2vw, 3.35rem);
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--text-on-dark);
+      }
+
+      .project-heading h3::before {
+        content: '◆';
+        font-size: 0.85rem;
+        color: var(--accent-blue);
+      }
+
+      .project-heading h3 span {
+        color: var(--accent-blue);
+      }
+
+      .project-discipline {
+        font-size: 0.85rem;
+        color: var(--text-muted-dark);
+        padding-left: 1rem;
+        border-left: 1px solid var(--border-dark);
+      }
+
+      .project-body {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(2rem, 5vw, 3.75rem);
+        align-items: start;
+      }
+
+      /* Card de preview com barra inferior em papel creme */
+      .project-preview {
+        margin: 0;
+        border: 1px solid var(--border-dark);
+        background-color: var(--bg-dark-elevated);
+        overflow: hidden;
+      }
+
+      .project-preview-visual {
+        width: 100%;
+        aspect-ratio: 16 / 9.2;
+        background-color: #16181d;
+        overflow: hidden;
+      }
+
+      .project-preview figcaption {
+        background-color: var(--bg-paper);
+        color: var(--text-on-paper);
+      }
+
+      .project-preview-open {
+        width: 100%;
+        padding: 1rem 1.35rem;
+        background: transparent;
+        border: 0;
+        color: var(--text-on-paper);
+        font-size: 0.9rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .project-preview-open:hover {
+        background-color: #dfd7c5;
+        color: var(--accent-blue-deep);
+      }
+
+      .project-lead {
+        margin: 0 0 1.25rem;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+        line-height: 1.25;
+        color: var(--text-on-dark);
+      }
+
+      .project-copy p {
+        margin: 0 0 1.15rem;
+        font-size: 0.95rem;
+        color: var(--text-muted-dark);
+        line-height: 1.7;
+      }
+
+      .project-features {
+        list-style: none;
+        margin: 1.25rem 0 1.5rem;
+        padding: 0;
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      .project-features li {
+        position: relative;
+        padding-left: 1.35rem;
+        font-size: 0.9rem;
+        color: var(--text-on-dark);
+      }
+
+      .project-features li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--accent-blue);
+        font-weight: 700;
+      }
+
+      .tech-tags {
+        list-style: none;
+        margin: 0 0 1.75rem;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .tech-tags li {
+        padding: 0.42rem 0.85rem;
+        border: 1px solid var(--border-dark);
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-on-dark);
+        letter-spacing: 0.02em;
+      }
+
+      .text-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-block: 0.75rem;
+        border-bottom: 1px solid var(--border-dark);
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--text-on-dark);
+        transition: border-color 0.2s ease, color 0.2s ease;
+      }
+
+      .text-link:hover {
+        color: var(--accent-blue);
+        border-color: var(--accent-blue);
+      }
+
+      .projects-end {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .projects-end .text-link {
+        min-width: 240px;
+      }
+
+      /* ==========================================================================
+         SEÇÃO 4: TECNOLOGIAS (#tecnologias)
+         ========================================================================== */
+      .skills {
+        border-top: 1px solid var(--border-dark);
+      }
+
+      .skills-heading {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-bottom: 3.5rem;
+      }
+
+      .skills-heading h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.25rem, 6vw, 4.75rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+
+      .skills-heading h2 em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.95em;
+        text-transform: lowercase;
+        color: var(--accent-blue);
+      }
+
+      .skills-heading p {
+        margin: 0;
+        max-width: 22rem;
+        font-size: 0.95rem;
+        color: var(--text-muted-dark);
+      }
+
+      .skills-list {
+        border-top: 1px solid var(--border-dark);
+      }
+
+      .skill-row {
+        display: grid;
+        grid-template-columns: minmax(210px, 0.35fr) 0.65fr;
+        align-items: center;
+        gap: 1.5rem;
+        padding-block: 1.85rem;
+        border-bottom: 1px solid var(--border-dark);
+      }
+
+      .skill-row h3 {
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.35rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--text-on-dark);
+      }
+
+      .skill-row h3 svg {
+        color: var(--text-muted-dark);
+        flex-shrink: 0;
+      }
+
+      .skill-row ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.75rem;
+      }
+
+      .skill-row li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-size: 0.925rem;
+        color: var(--text-muted-dark);
+      }
+
+      .skill-row li::before {
+        content: '✦';
+        font-size: 0.65rem;
+        color: var(--accent-blue);
+      }
+
+      /* ==========================================================================
+         SEÇÃO 5: EXPERIÊNCIA PROFISSIONAL (#experiencia — CARDS estilo TICKET)
+         ========================================================================== */
+      .experience-layout {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: clamp(2.5rem, 6vw, 4.5rem);
+        align-items: start;
+      }
+
+      .experience-heading h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.25rem, 6vw, 4.75rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+
+      .experience-heading h2 em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.95em;
+        text-transform: lowercase;
+        color: var(--accent-blue);
+      }
+
+      .experience-list {
+        display: grid;
+        gap: 1.75rem;
+      }
+
+      .experience-ticket {
+        position: relative;
+        padding: 2.25rem 2.5rem;
+        background-color: #181715;
+        border: 1px solid var(--border-blue-subtle);
+      }
+
+      /* Recortes semicirculares nas laterais do ticket */
+      .experience-ticket::before,
+      .experience-ticket::after {
+        content: '';
+        position: absolute;
+        top: 52%;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: var(--bg-dark);
+        border: 1px solid var(--border-blue-subtle);
+      }
+
+      .experience-ticket::before {
+        left: -9px;
+        border-left-color: transparent;
+      }
+
+      .experience-ticket::after {
+        right: -9px;
+        border-right-color: transparent;
+      }
+
+      .experience-ticket h3 {
+        margin: 0 0 0.35rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 2.35rem;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--text-on-dark);
+      }
+
+      .ticket-role {
+        margin: 0 0 0.35rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-on-dark);
+      }
+
+      .ticket-period {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-muted-dark);
+      }
+
+      .ticket-rule {
+        height: 1px;
+        background-color: var(--border-dark);
+        margin-block: 1.5rem;
+      }
+
+      .ticket-description {
+        margin: 0;
+        font-size: 0.925rem;
+        color: var(--text-muted-dark);
+        line-height: 1.7;
+      }
+
+      /* ==========================================================================
+         SEÇÃO 6: FORMAÇÃO ACADÊMICA (#formacao)
+         ========================================================================== */
+      .education {
+        padding-top: 2rem;
+      }
+
+      .education-layout {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: clamp(2.5rem, 6vw, 4.5rem);
+        align-items: start;
+      }
+
+      .education-layout h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.25rem, 6vw, 4.75rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+      }
+
+      .education-layout h2 em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.95em;
+        text-transform: lowercase;
+        color: var(--accent-blue);
+      }
+
+      .education-timeline {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-left: 1px solid var(--border-dark);
+        padding-left: 2rem;
+      }
+
+      .education-entry {
+        position: relative;
+        padding-bottom: 2.5rem;
+      }
+
+      .education-entry:last-child {
+        padding-bottom: 0;
+      }
+
+      .education-entry::before {
+        content: '◆';
+        position: absolute;
+        left: -2.42rem;
+        top: 0.15rem;
+        font-size: 0.85rem;
+        color: var(--accent-blue);
+        background-color: var(--bg-dark);
+        padding-block: 2px;
+      }
+
+      .education-entry h3 {
+        margin: 0 0 0.5rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.85rem;
+        line-height: 1.05;
+        text-transform: uppercase;
+        color: var(--text-on-dark);
+      }
+
+      .education-course {
+        margin: 0 0 0.85rem;
+        font-size: 0.925rem;
+        color: var(--text-muted-dark);
+        line-height: 1.6;
+      }
+
+      .education-entry p:last-child {
+        margin: 0;
+        font-size: 0.925rem;
+        color: var(--text-muted-dark);
+      }
+
+      /* ==========================================================================
+         SEÇÃO 7: CONTATO (#contato — FAIXA AZUL PROFUNDO + TICKET CREME)
+         ========================================================================== */
+      .contact {
+        background-color: var(--contact-bg);
+        color: var(--text-on-dark);
+        padding-block: clamp(5rem, 9vw, 7rem);
+      }
+
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: clamp(2.5rem, 6vw, 4.5rem);
+        align-items: center;
+      }
+
+      .contact-heading h2 {
+        margin: 0 0 1.25rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.5rem, 6.5vw, 5.25rem);
+        line-height: 0.88;
+        text-transform: uppercase;
+        color: var(--text-on-dark);
+      }
+
+      .contact-heading h2 em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.95em;
+        text-transform: lowercase;
+        color: #bfdbfe;
+      }
+
+      .contact-heading p {
+        margin: 0;
+        max-width: 24rem;
+        font-size: 0.975rem;
+        color: rgba(234, 228, 215, 0.85);
+      }
+
+      /* Ticket Creme com recortes semicirculares */
+      .contact-ticket {
+        position: relative;
+        background-color: var(--bg-paper);
+        color: var(--text-on-paper);
+        padding: 0.5rem 2.25rem;
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+      }
+
+      .contact-ticket::before,
+      .contact-ticket::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: var(--contact-bg);
+      }
+
+      .contact-ticket::before {
+        left: -9px;
+      }
+
+      .contact-ticket::after {
+        right: -9px;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .contact-links a {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        padding-block: 1.45rem;
+        border-bottom: 1px solid var(--border-paper);
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.55rem;
+        letter-spacing: 0.01em;
+        color: var(--text-on-paper);
+        transition: color 0.2s ease, padding-left 0.2s ease;
+      }
+
+      .contact-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .contact-links a:hover {
+        color: var(--accent-blue-deep);
+        padding-left: 0.35rem;
+      }
+
+      .contact-links a svg {
+        color: var(--text-on-paper);
+        flex-shrink: 0;
+      }
+
+      .contact-links a span:last-of-type {
+        margin-left: auto;
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .contact-link-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.15;
+      }
+
+      .contact-address {
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text-muted-paper);
+        margin-top: 0.2rem;
+      }
+
+      /* ==========================================================================
+         FOOTER
+         ========================================================================== */
+      .site-footer {
+        background-color: var(--bg-dark);
+        border-top: 1px solid var(--border-dark);
+        padding-block: 2rem;
+        font-size: 0.825rem;
+        color: var(--text-muted-dark);
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .footer-inner p {
+        margin: 0;
+      }
+
+      .footer-social {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .footer-social a:hover,
+      .back-top:hover {
+        color: var(--text-on-dark);
+      }
+
+      .back-top {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .back-top span[aria-hidden] {
+        color: var(--accent-blue);
+      }
+
+      /* ==========================================================================
+         DIALOGS / MODAIS DE ESTUDO DE CASO DOS PROJETOS
+         ========================================================================== */
+      dialog.project-preview-dialog {
+        width: min(920px, 92vw);
+        padding: 0;
+        border: 1px solid var(--border-blue-subtle);
+        background-color: var(--bg-dark-elevated);
+        color: var(--text-on-dark);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+      }
+
+      dialog.project-preview-dialog::backdrop {
+        background: rgba(10, 10, 9, 0.82);
+        backdrop-filter: blur(6px);
+      }
+
+      .project-preview-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.15rem 1.5rem;
+        background-color: var(--bg-paper);
+        color: var(--text-on-paper);
+      }
+
+      .project-preview-header h3 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.45rem;
+        text-transform: uppercase;
+      }
+
+      .project-preview-close {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: transparent;
+        border: 1px solid var(--border-paper);
+        color: var(--text-on-paper);
+        padding: 0.4rem 0.85rem;
+        font-size: 0.825rem;
+        font-weight: 700;
+      }
+
+      .project-preview-close:hover {
+        background-color: var(--text-on-paper);
+        color: var(--bg-paper);
+      }
+
+      .project-dialog-body {
+        padding: 1.75rem;
+      }
+
+      /* ==========================================================================
+         ANIMAÇÃO REVEAL NO SCROLL
+         ========================================================================== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ==========================================================================
+         RESPONSIVIDADE (TABLET & MOBILE)
+         ========================================================================== */
+      @media (max-width: 960px) {
+        .hero-layout,
+        .about-grid,
+        .project-body,
+        .experience-layout,
+        .education-layout,
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .portrait-poster {
+          order: -1;
+          justify-content: flex-start;
+          padding-left: 0;
+        }
+
+        .main-nav {
+          position: fixed;
+          top: var(--header-height);
+          left: 0;
+          right: 0;
+          background-color: var(--bg-dark);
+          border-bottom: 1px solid var(--border-dark);
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1.5rem clamp(1.25rem, 4vw, 2.5rem);
+          gap: 1.15rem;
+          transform: translateY(-120%);
+          opacity: 0;
+          pointer-events: none;
+          transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .main-nav.is-open {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .skill-row {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+
+        .experience-ticket {
+          padding: 1.75rem 1.5rem;
+        }
+
+        .contact-ticket {
+          padding-inline: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body data-page="home">
+    <a class="skip-link" href="#conteudo" data-i18n="common.skipLink">
+      Pular para o conteúdo
+    </a>
+
+    <!-- ========================================================================
+         NAVEGAÇÃO FIXA
+         ======================================================================== -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="#inicio" aria-label="GF508 — início">
+          <span class="wordmark-symbol" aria-hidden="true">◆</span>GF508<span
+            class="wordmark-dot"
+            >.</span
+          >
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+          <a href="#sobre" data-i18n="nav.about">Sobre mim</a>
+          <a href="#projetos" data-i18n="nav.projects">Projetos</a>
+          <a href="#tecnologias" data-i18n="nav.skills">Tecnologias</a>
+          <a href="#experiencia" data-i18n="nav.experience">Experiência</a>
+          <a href="#formacao" data-i18n="nav.education">Formação</a>
+          <a href="#contato" class="nav-contact">
+            <span data-i18n="nav.contact">Vamos conversar</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="language-toggle"
+            type="button"
+            id="language-toggle"
+            aria-label="Mudar idioma para inglês"
+            title="Mudar idioma para inglês"
+          >
+            EN
+          </button>
+          <button
+            class="menu-toggle"
+            type="button"
+            id="menu-toggle"
+            aria-label="Abrir menu"
+            aria-controls="main-nav"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <!-- ======================================================================
+           1. APRESENTAÇÃO / HERO (#inicio)
+           ====================================================================== -->
+      <section class="hero container" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <h1 id="hero-title">
+              <span>GABRIEL</span>
+              <span class="surname">
+                FONSECA<span class="hero-title-star" aria-hidden="true">✳</span>
+              </span>
+            </h1>
+
+            <p class="hero-description">
+              <strong data-i18n="hero.role">Desenvolvedor Full Stack &amp; Engenharia de IA.</strong>
+              <span data-i18n="hero.study">
+                Atualmente, estudo Análise e Desenvolvimento de Sistemas na
+              </span>
+              <strong>SPTech</strong>
+              <span data-i18n="hero.internship">e atuo com desenvolvimento back-end e sistemas agênticos na</span>
+              <strong>Stefanini Group</strong>.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button-primary" href="#projetos">
+                <span data-i18n="hero.exploreProjects">Explorar projetos</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+
+              <a
+                class="hero-github"
+                href="https://github.com/GabrielFonseca508"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span data-i18n="hero.myGithub">Meu GitHub</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <div class="hero-contact" aria-label="Contato e currículo">
+              <a class="hero-email" href="mailto:Gabrieleduardo2801@gmail.com">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+                <span>Gabrieleduardo2801@gmail.com</span>
+              </a>
+
+              <a
+                class="hero-resume"
+                href="#contato"
+                title="Baixar currículo ou ver contatos"
+              >
+                <span data-i18n="hero.cvLabel">Currículo PDF</span>
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Moldura de Retrato com Raios Radiais e Selo Circular -->
+          <div class="portrait-poster">
+            <!-- Raios radiais decorativos em azul sutil -->
+            <svg class="portrait-rays" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+              <g stroke="#3B82F6" stroke-width="14" stroke-opacity="0.22">
+                <line x1="300" y1="300" x2="300" y2="0" />
+                <line x1="300" y1="300" x2="450" y2="20" />
+                <line x1="300" y1="300" x2="560" y2="110" />
+                <line x1="300" y1="300" x2="600" y2="250" />
+                <line x1="300" y1="300" x2="580" y2="410" />
+                <line x1="300" y1="300" x2="490" y2="540" />
+                <line x1="300" y1="300" x2="340" y2="600" />
+                <line x1="300" y1="300" x2="180" y2="580" />
+                <line x1="300" y1="300" x2="60" y2="490" />
+                <line x1="300" y1="300" x2="0" y2="340" />
+                <line x1="300" y1="300" x2="30" y2="180" />
+                <line x1="300" y1="300" x2="140" y2="50" />
+              </g>
+            </svg>
+
+            <figure class="poster-paper">
+              <div class="poster-photo">
+                <!--
+                  DICA GITHUB PAGES:
+                  Salve sua foto 'fotoFrontalSerio.jpg' na pasta 'assets/images/' do seu repositório
+                  para que ela apareça automaticamente aqui no GitHub Pages!
+                -->
+                <img
+                  src="assets/images/fotoFrontalSerio.jpg"
+                  alt="Retrato de Gabriel Eduardo Fonseca"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <!-- Fallback editorial estilizado caso a imagem local ainda não esteja na pasta -->
+                <div
+                  style="display:none; width:100%; height:100%; flex-direction:column; align-items:center; justify-content:center; background: radial-gradient(circle at 50% 35%, #2b3545 0%, #14161a 100%); color:#EAE4D7; text-align:center; padding:1.5rem;"
+                >
+                  <svg width="86" height="86" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="1.2" style="margin-bottom:0.85rem;">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                  </svg>
+                  <span style="font-family:var(--font-display); font-weight:800; font-size:1.5rem; letter-spacing:0.04em;">GABRIEL FONSECA</span>
+                  <span style="font-size:0.75rem; color:#94a3b8; margin-top:0.25rem;">assets/images/fotoFrontalSerio.jpg</span>
+                </div>
+                <div class="photo-halftone" aria-hidden="true"></div>
+              </div>
+            </figure>
+
+            <!-- Selo circular geométrico no canto inferior direito -->
+            <svg class="portrait-seal" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+              <circle cx="60" cy="60" r="56" fill="#121110" stroke="#EAE4D7" stroke-width="1.5" />
+              <circle cx="60" cy="60" r="48" stroke="#3B82F6" stroke-width="1" stroke-dasharray="3 3" />
+              <polygon points="60,26 76,60 60,94 44,60" fill="none" stroke="#3B82F6" stroke-width="1.5" />
+              <polygon points="60,36 70,60 60,84 50,60" fill="#EAE4D7" fill-opacity="0.15" />
+              <circle cx="60" cy="60" r="4" fill="#3B82F6" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           2. SOBRE MIM (#sobre — FUNDO PAPEL CREME #EAE4D7)
+           ====================================================================== -->
+      <section class="about" id="sobre" aria-labelledby="about-title">
+        <!-- Marca d'água central geométrica -->
+        <svg class="about-watermark" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+          <polygon points="100,10 190,100 100,190 10,100" stroke="#1E40AF" stroke-width="1.5" />
+          <polygon points="100,38 162,100 100,162 38,100" stroke="#1E40AF" stroke-width="1" />
+        </svg>
+
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-heading reveal">
+              <h2 id="about-title">
+                <span data-i18n="about.title">SOBRE</span><br /><em data-i18n="about.subtitle">mim.</em>
+              </h2>
+
+              <ol class="about-journey" aria-label="Minha trajetória">
+                <li>
+                  <a href="#experiencia">
+                    <span class="journey-mark" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </span>
+                    <span class="journey-name" data-i18n="about.armyTitle">Exército Brasileiro</span>
+                    <span class="journey-detail" data-i18n="about.armyDetail">Soldado / Motorista · 2ª Divisão</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#formacao">
+                    <span class="journey-mark" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                      </svg>
+                    </span>
+                    <span class="journey-name">SPTech</span>
+                    <span class="journey-detail" data-i18n="about.sptechDetail">Análise e Desenvolvimento de Sistemas</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#experiencia">
+                    <span class="journey-mark" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 17 10 11 4 5" />
+                        <line x1="12" y1="19" x2="20" y2="19" />
+                      </svg>
+                    </span>
+                    <span class="journey-name">Stefanini Group</span>
+                    <span class="journey-detail" data-i18n="about.stefaniniDetail">Estágio em TI / Dev Full Stack</span>
+                  </a>
+                </li>
+              </ol>
+            </div>
+
+            <div class="about-copy reveal">
+              <p class="lead">
+                <span data-i18n="about.intro">Sou Gabriel Eduardo, mas também pode me chamar de</span>
+                <strong>GabrielFonseca508</strong>.
+              </p>
+
+              <p data-i18n="about.p1">
+                Antes de mergulhar de vez no código, servi no Exército Brasileiro como Soldado e Motorista na Companhia de Comando da 2ª Divisão (2025–2026), experiência que moldou minha disciplina, senso de responsabilidade, comunicação clara e capacidade de atuar sob pressão.
+              </p>
+
+              <p data-i18n="about.p2">
+                Hoje curso Análise e Desenvolvimento de Sistemas na São Paulo Tech School (SPTech) e atuo na Stefanini Group, aplicando na prática conceitos de desenvolvimento web, back-end, bancos de dados e soluções corporativas.
+              </p>
+
+              <p data-i18n="about.p3">
+                Tenho forte atuação em Inteligência Artificial e Engenharia de Agentes, projetando e coordenando arquiteturas multiagente com LangChain e LangGraph, pipelines de RAG, bancos vetoriais, AST parsing e engenharia de contexto para análise de código e automação de documentação técnica.
+              </p>
+
+              <p data-i18n="about.p4">
+                No ecossistema de software tradicional, concentro meus estudos e entregas em Java, JavaScript, Node.js, Python e MySQL, conectando lógica sólida, APIs bem estruturadas e integração com hardware e dados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           3. PROJETOS (#projetos)
+           ====================================================================== -->
+      <section class="projects section container" id="projetos" aria-labelledby="projects-title">
+        <div class="section-heading reveal">
+          <h2 id="projects-title">
+            <span data-i18n="projects.title">PROJETOS</span><br /><em data-i18n="projects.subtitle">em destaque.</em>
+          </h2>
+          <p data-i18n="projects.intro">
+            Projetos de arquitetura de IA, sistemas full stack e IoT desenvolvidos na minha trajetória.
+          </p>
+        </div>
+
+        <!-- PROJETO 1: AGENT DOC & ORCHESTRATOR (IA & SISTEMAS AGÊNTICOS) -->
+        <article class="project reveal" aria-labelledby="agentdoc-title">
+          <div class="project-heading">
+            <h3 id="agentdoc-title">AGENT DOC &amp; ORCHESTRATOR<span>.</span></h3>
+            <span class="project-discipline" data-i18n="projects.agentTag">IA Generativa &amp; Arquitetura Agêntica</span>
+          </div>
+
+          <div class="project-body">
+            <figure class="project-preview">
+              <div class="project-preview-visual">
+                <!-- Mockup visual técnico de Orquestração Multiagente & RAG -->
+                <svg viewBox="0 0 640 368" width="100%" height="100%" fill="none" aria-label="Arquitetura de Orquestração Multiagente e RAG">
+                  <rect width="640" height="368" fill="#10141D" />
+                  <!-- Grid sutil de fundo -->
+                  <g stroke="#1E293B" stroke-width="1">
+                    <line x1="0" y1="60" x2="640" y2="60" />
+                    <line x1="0" y1="120" x2="640" y2="120" />
+                    <line x1="0" y1="180" x2="640" y2="180" />
+                    <line x1="0" y1="240" x2="640" y2="240" />
+                    <line x1="0" y1="300" x2="640" y2="300" />
+                  </g>
+
+                  <!-- Topbar -->
+                  <rect x="0" y="0" width="640" height="44" fill="#0B0E14" />
+                  <circle cx="24" cy="22" r="6" fill="#3B82F6" />
+                  <text x="40" y="26" fill="#EAE4D7" font-family="sans-serif" font-size="12" font-weight="700">LangGraph Multi-Agent Pipeline · AST + RAG</text>
+                  <rect x="498" y="11" width="118" height="22" rx="11" fill="#1E3A8A" />
+                  <text x="515" y="26" fill="#93C5FD" font-family="sans-serif" font-size="10" font-weight="700">Contexto Ativo</text>
+
+                  <!-- Nó 1: AST Parser & Ingestion -->
+                  <rect x="30" y="84" width="155" height="82" rx="6" fill="#172033" stroke="#3B82F6" stroke-width="1.5" />
+                  <text x="44" y="108" fill="#60A5FA" font-family="sans-serif" font-size="10" font-weight="700">01 · AST PARSER</text>
+                  <text x="44" y="128" fill="#EAE4D7" font-family="sans-serif" font-size="12" font-weight="700">Análise Sintática</text>
+                  <text x="44" y="146" fill="#94A3B8" font-family="sans-serif" font-size="10">Extração de símbolos</text>
+
+                  <!-- Seta 1 -> 2 -->
+                  <line x1="185" y1="125" x2="236" y2="125" stroke="#3B82F6" stroke-width="2" />
+                  <polygon points="236,120 245,125 236,130" fill="#3B82F6" />
+
+                  <!-- Nó 2: Orquestrador LangGraph -->
+                  <rect x="245" y="70" width="170" height="110" rx="6" fill="#1E3A8A" stroke="#60A5FA" stroke-width="1.5" />
+                  <text x="260" y="96" fill="#BFDBFE" font-family="sans-serif" font-size="10" font-weight="700">02 · ORCHESTRATOR</text>
+                  <text x="260" y="118" fill="#FFFFFF" font-family="sans-serif" font-size="13" font-weight="800">LangGraph State</text>
+                  <text x="260" y="138" fill="#DBEAFE" font-family="sans-serif" font-size="10">Roteamento de agentes</text>
+                  <text x="260" y="155" fill="#DBEAFE" font-family="sans-serif" font-size="10">&amp; Context Engineering</text>
+
+                  <!-- Seta 2 -> 3 -->
+                  <line x1="415" y1="125" x2="458" y2="125" stroke="#3B82F6" stroke-width="2" />
+                  <polygon points="458,120 467,125 458,130" fill="#3B82F6" />
+
+                  <!-- Nó 3: Doc Synthesis -->
+                  <rect x="467" y="84" width="145" height="82" rx="6" fill="#172033" stroke="#3B82F6" stroke-width="1.5" />
+                  <text x="481" y="108" fill="#60A5FA" font-family="sans-serif" font-size="10" font-weight="700">03 · OUTPUT AGENT</text>
+                  <text x="481" y="128" fill="#EAE4D7" font-family="sans-serif" font-size="12" font-weight="700">Docs &amp; Specs</text>
+                  <text x="481" y="146" fill="#94A3B8" font-family="sans-serif" font-size="10">Markdown estruturado</text>
+
+                  <!-- Conexão Vertical Orquestrador <-> Vector DB -->
+                  <line x1="330" y1="180" x2="330" y2="224" stroke="#60A5FA" stroke-width="1.8" stroke-dasharray="4 3" />
+
+                  <!-- Barra Inferior: Vector DB & RAG -->
+                  <rect x="30" y="226" width="582" height="114" rx="6" fill="#141B29" stroke="#2D3B55" />
+                  <text x="50" y="254" fill="#60A5FA" font-family="sans-serif" font-size="11" font-weight="700">CAMADA DE RECUPERAÇÃO SEMÂNTICA (RAG + VECTOR DATABASE)</text>
+                  <rect x="50" y="270" width="170" height="48" rx="4" fill="#0F172A" stroke="#1E3A8A" />
+                  <text x="64" y="291" fill="#EAE4D7" font-family="sans-serif" font-size="11" font-weight="700">Embeddings &amp; Chunks</text>
+                  <text x="64" y="307" fill="#94A3B8" font-family="sans-serif" font-size="10">Indexação por AST</text>
+
+                  <rect x="236" y="270" width="170" height="48" rx="4" fill="#0F172A" stroke="#1E3A8A" />
+                  <text x="250" y="291" fill="#EAE4D7" font-family="sans-serif" font-size="11" font-weight="700">Prompt Guardrails</text>
+                  <text x="250" y="307" fill="#94A3B8" font-family="sans-serif" font-size="10">Validação determinística</text>
+
+                  <rect x="422" y="270" width="170" height="48" rx="4" fill="#0F172A" stroke="#1E3A8A" />
+                  <text x="436" y="291" fill="#EAE4D7" font-family="sans-serif" font-size="11" font-weight="700">Multi-Agent Review</text>
+                  <text x="436" y="307" fill="#94A3B8" font-family="sans-serif" font-size="10">Refinamento iterativo</text>
+                </svg>
+              </div>
+              <figcaption>
+                <button
+                  class="project-preview-open"
+                  type="button"
+                  data-open-dialog="dialog-agentdoc"
+                >
+                  <span data-i18n="projects.viewCase">Conhecer detalhes do projeto</span>
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </figcaption>
+            </figure>
+
+            <div class="project-copy">
+              <p class="project-lead" data-i18n="projects.agentLead">
+                Orquestração de múltiplos agentes para análise de código e documentação automatizada.
+              </p>
+
+              <p data-i18n="projects.agentDesc">
+                Arquitetura modular baseada em grafos de estado e pipelines agênticos para interpretar repositórios de software, extrair contexto estrutural via AST parsing e gerar documentação técnica padronizada.
+              </p>
+
+              <p data-i18n="projects.agentContrib">
+                Desenvolvi os fluxos de orquestração com LangChain e LangGraph, estratégias de engenharia de contexto e recuperação semântica (RAG) apoiada por bancos vetoriais para minimizar alucinações e manter precisão arquitetural.
+              </p>
+
+              <ul class="project-features">
+                <li data-i18n="projects.agentF1">Orquestração multiagente com roteamento dinâmico de tarefas e revisão</li>
+                <li data-i18n="projects.agentF2">Pipelines de RAG com indexação semântica em bancos vetoriais e AST parsing</li>
+                <li data-i18n="projects.agentF3">Engenharia de contexto e prompts estruturados para automação técnica</li>
+              </ul>
+
+              <ul class="tech-tags" aria-label="Tecnologias do Agent Doc & Orchestrator">
+                <li>Python</li>
+                <li>LangChain</li>
+                <li>LangGraph</li>
+                <li>RAG</li>
+                <li>Vector DB</li>
+                <li>Node.js</li>
+              </ul>
+
+              <a
+                class="text-link"
+                href="https://github.com/GabrielFonseca508"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="projects.viewCode">Ver código no GitHub</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJETO 2: SAFE SOJA -->
+        <article class="project reveal" aria-labelledby="safesoja-title">
+          <div class="project-heading">
+            <h3 id="safesoja-title">SAFE SOJA<span>.</span></h3>
+            <span class="project-discipline" data-i18n="projects.safesojaTag">Software e IoT · Em equipe</span>
+          </div>
+
+          <div class="project-body">
+            <figure class="project-preview">
+              <div class="project-preview-visual">
+                <!-- Mockup visual técnico do dashboard SafeSoja -->
+                <svg viewBox="0 0 640 368" width="100%" height="100%" fill="none" aria-label="Interface de monitoramento SafeSoja">
+                  <rect width="640" height="368" fill="#131720" />
+                  <!-- Barra lateral -->
+                  <rect x="0" y="0" width="120" height="368" fill="#0E1118" />
+                  <circle cx="28" cy="30" r="8" fill="#3B82F6" />
+                  <rect x="44" y="25" width="54" height="10" rx="2" fill="#EAE4D7" />
+                  <rect x="18" y="65" width="84" height="24" rx="4" fill="#1E3A8A" />
+                  <rect x="28" y="73" width="52" height="8" rx="2" fill="#93C5FD" />
+                  <rect x="28" y="108" width="60" height="7" rx="2" fill="#475569" />
+                  <rect x="28" y="132" width="48" height="7" rx="2" fill="#475569" />
+                  <rect x="28" y="156" width="56" height="7" rx="2" fill="#475569" />
+
+                  <!-- Header interno -->
+                  <text x="144" y="36" fill="#EAE4D7" font-family="sans-serif" font-size="14" font-weight="700">SafeSoja · Monitoramento de Umidade do Solo</text>
+                  <rect x="515" y="20" width="100" height="22" rx="11" fill="#1E3A8A" />
+                  <circle cx="529" cy="31" r="4" fill="#3B82F6" />
+                  <text x="539" y="35" fill="#BFDBFE" font-family="sans-serif" font-size="10" font-weight="600">Arduino Online</text>
+
+                  <!-- KPI Cards -->
+                  <rect x="144" y="56" width="146" height="72" rx="6" fill="#1A202C" stroke="#2D3748" />
+                  <text x="158" y="78" fill="#94A3B8" font-family="sans-serif" font-size="10">UMIDADE MÉDIA TALHÃO A</text>
+                  <text x="158" y="110" fill="#3B82F6" font-family="sans-serif" font-size="24" font-weight="800">64.8%</text>
+
+                  <rect x="306" y="56" width="146" height="72" rx="6" fill="#1A202C" stroke="#2D3748" />
+                  <text x="320" y="78" fill="#94A3B8" font-family="sans-serif" font-size="10">SENSORES ATIVOS</text>
+                  <text x="320" y="110" fill="#EAE4D7" font-family="sans-serif" font-size="24" font-weight="800">12 / 12</text>
+
+                  <rect x="468" y="56" width="146" height="72" rx="6" fill="#1A202C" stroke="#2D3748" />
+                  <text x="482" y="78" fill="#94A3B8" font-family="sans-serif" font-size="10">STATUS IRRIGAÇÃO</text>
+                  <text x="482" y="108" fill="#60A5FA" font-family="sans-serif" font-size="16" font-weight="700">IDEAL</text>
+
+                  <!-- Gráfico de linha -->
+                  <rect x="144" y="146" width="470" height="196" rx="6" fill="#1A202C" stroke="#2D3748" />
+                  <text x="162" y="172" fill="#EAE4D7" font-family="sans-serif" font-size="11" font-weight="600">Histórico de Umidade (MySQL · Tempo Real)</text>
+                  <line x1="162" y1="210" x2="594" y2="210" stroke="#2D3748" stroke-dasharray="4 4" />
+                  <line x1="162" y1="255" x2="594" y2="255" stroke="#2D3748" stroke-dasharray="4 4" />
+                  <line x1="162" y1="300" x2="594" y2="300" stroke="#2D3748" stroke-dasharray="4 4" />
+                  <polyline
+                    points="162,285 225,260 288,268 351,225 414,232 477,205 540,214 594,195"
+                    fill="none"
+                    stroke="#3B82F6"
+                    stroke-width="3"
+                  />
+                  <circle cx="351" cy="225" r="4.5" fill="#EAE4D7" stroke="#3B82F6" stroke-width="2" />
+                  <circle cx="477" cy="205" r="4.5" fill="#EAE4D7" stroke="#3B82F6" stroke-width="2" />
+                  <circle cx="594" cy="195" r="4.5" fill="#EAE4D7" stroke="#3B82F6" stroke-width="2" />
+                </svg>
+              </div>
+              <figcaption>
+                <button
+                  class="project-preview-open"
+                  type="button"
+                  data-open-dialog="dialog-safesoja"
+                >
+                  <span data-i18n="projects.viewCase">Conhecer detalhes do projeto</span>
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </figcaption>
+            </figure>
+
+            <div class="project-copy">
+              <p class="project-lead" data-i18n="projects.safesojaLead">
+                Monitoramento inteligente da umidade do solo em plantações de soja.
+              </p>
+
+              <p data-i18n="projects.safesojaDesc">
+                Projeto desenvolvido em grupo na SPTech integrando hardware e software para acompanhar condições hídricas na lavoura e apoiar a tomada de decisão agrícola.
+              </p>
+
+              <p data-i18n="projects.safesojaContrib">
+                Atuei com foco nas áreas de back-end e engenharia de dados, estruturando a API em Node.js, o tratamento das leituras enviadas pelos sensores Arduino e a persistência no banco de dados MySQL.
+              </p>
+
+              <ul class="project-features">
+                <li data-i18n="projects.safesojaF1">Coleta contínua de dados via sensores conectados ao Arduino</li>
+                <li data-i18n="projects.safesojaF2">API REST em Node.js e armazenamento estruturado em MySQL</li>
+                <li data-i18n="projects.safesojaF3">Painel web para visualização de métricas e alertas de umidade</li>
+              </ul>
+
+              <ul class="tech-tags" aria-label="Tecnologias do SafeSoja">
+                <li>JavaScript</li>
+                <li>Node.js</li>
+                <li>MySQL</li>
+                <li>Arduino</li>
+                <li>HTML</li>
+                <li>CSS</li>
+              </ul>
+
+              <a
+                class="text-link"
+                href="https://github.com/GabrielFonseca508"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="projects.viewCode">Ver código no GitHub</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJETO 2: MISSÃO BRASIL -->
+        <article class="project reveal" aria-labelledby="missaobrasil-title">
+          <div class="project-heading">
+            <h3 id="missaobrasil-title">MISSÃO BRASIL<span>.</span></h3>
+            <span class="project-discipline" data-i18n="projects.missaoTag">Aplicação Web Full Stack · Individual</span>
+          </div>
+
+          <div class="project-body">
+            <figure class="project-preview">
+              <div class="project-preview-visual">
+                <!-- Mockup visual da aplicação Missão Brasil -->
+                <svg viewBox="0 0 640 368" width="100%" height="100%" fill="none" aria-label="Interface da aplicação Missão Brasil">
+                  <rect width="640" height="368" fill="#12161E" />
+                  <!-- Topbar -->
+                  <rect x="0" y="0" width="640" height="48" fill="#0B0E14" />
+                  <polygon points="32,14 42,24 32,34 22,24" fill="#3B82F6" />
+                  <text x="52" y="29" fill="#EAE4D7" font-family="sans-serif" font-size="13" font-weight="800">MISSÃO BRASIL</text>
+                  <rect x="520" y="13" width="92" height="22" rx="4" fill="#2563EB" />
+                  <text x="538" y="28" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="700">Área Logada</text>
+
+                  <!-- Hero Banner interno -->
+                  <rect x="28" y="66" width="350" height="128" rx="6" fill="#1B2332" stroke="#2C3A52" />
+                  <text x="46" y="96" fill="#60A5FA" font-family="sans-serif" font-size="10" font-weight="700">PORTAL INTERATIVO · FORÇAS ARMADAS</text>
+                  <text x="46" y="122" fill="#EAE4D7" font-family="sans-serif" font-size="17" font-weight="800">História, Carreiras &amp; Quiz</text>
+                  <text x="46" y="144" fill="#94A3B8" font-family="sans-serif" font-size="11">Autenticação, controle de sessão e ranking</text>
+                  <rect x="46" y="158" width="110" height="22" rx="4" fill="#3B82F6" />
+                  <text x="64" y="173" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="700">Iniciar Quiz →</text>
+
+                  <!-- Card Estatísticas Quiz -->
+                  <rect x="394" y="66" width="218" height="274" rx="6" fill="#1B2332" stroke="#2C3A52" />
+                  <text x="412" y="94" fill="#EAE4D7" font-family="sans-serif" font-size="12" font-weight="700">Desempenho dos Usuários</text>
+                  <rect x="412" y="114" width="182" height="14" rx="3" fill="#0F172A" />
+                  <rect x="412" y="114" width="148" height="14" rx="3" fill="#3B82F6" />
+                  <text x="412" y="144" fill="#94A3B8" font-family="sans-serif" font-size="10">Exército Brasileiro · 82% acertos</text>
+
+                  <rect x="412" y="162" width="182" height="14" rx="3" fill="#0F172A" />
+                  <rect x="412" y="162" width="124" height="14" rx="3" fill="#2563EB" />
+                  <text x="412" y="192" fill="#94A3B8" font-family="sans-serif" font-size="10">Marinha do Brasil · 68% acertos</text>
+
+                  <rect x="412" y="210" width="182" height="14" rx="3" fill="#0F172A" />
+                  <rect x="412" y="210" width="136" height="14" rx="3" fill="#60A5FA" />
+                  <text x="412" y="240" fill="#94A3B8" font-family="sans-serif" font-size="10">Força Aérea · 75% acertos</text>
+
+                  <rect x="412" y="266" width="182" height="54" rx="4" fill="#0F172A" />
+                  <text x="426" y="288" fill="#60A5FA" font-family="sans-serif" font-size="10" font-weight="700">BANCO RELACIONAL</text>
+                  <text x="426" y="306" fill="#EAE4D7" font-family="sans-serif" font-size="11">MySQL + Node.js Sessions</text>
+
+                  <!-- Cards inferiores -->
+                  <rect x="28" y="210" width="168" height="130" rx="6" fill="#1B2332" stroke="#2C3A52" />
+                  <text x="44" y="240" fill="#3B82F6" font-family="sans-serif" font-size="12" font-weight="700">Cadastro &amp; Login</text>
+                  <text x="44" y="262" fill="#94A3B8" font-family="sans-serif" font-size="10">Controle de sessão e</text>
+                  <text x="44" y="278" fill="#94A3B8" font-family="sans-serif" font-size="10">validação completa.</text>
+
+                  <rect x="210" y="210" width="168" height="130" rx="6" fill="#1B2332" stroke="#2C3A52" />
+                  <text x="226" y="240" fill="#3B82F6" font-family="sans-serif" font-size="12" font-weight="700">Dashboard &amp; Gráficos</text>
+                  <text x="226" y="262" fill="#94A3B8" font-family="sans-serif" font-size="10">Métricas consolidadas</text>
+                  <text x="226" y="278" fill="#94A3B8" font-family="sans-serif" font-size="10">em tempo real.</text>
+                </svg>
+              </div>
+              <figcaption>
+                <button
+                  class="project-preview-open"
+                  type="button"
+                  data-open-dialog="dialog-missao"
+                >
+                  <span data-i18n="projects.viewCase">Conhecer detalhes do projeto</span>
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </figcaption>
+            </figure>
+
+            <div class="project-copy">
+              <p class="project-lead" data-i18n="projects.missaoLead">
+                Aplicação web interativa dedicada às Forças Armadas do Brasil.
+              </p>
+
+              <p data-i18n="projects.missaoDesc">
+                Projeto individual desenvolvido de ponta a ponta para apresentar informações históricas e institucionais sobre as Forças Armadas de maneira dinâmica e acessível.
+              </p>
+
+              <p data-i18n="projects.missaoContrib">
+                Implementei toda a arquitetura full stack: modelagem relacional em MySQL, rotas e controle de sessão no back-end em Node.js, além do front-end interativo com quiz e dashboard estatístico.
+              </p>
+
+              <ul class="project-features">
+                <li data-i18n="projects.missaoF1">Sistema completo de cadastro, login e controle de sessão</li>
+                <li data-i18n="projects.missaoF2">Quiz interativo com registro de pontuação por usuário</li>
+                <li data-i18n="projects.missaoF3">Dashboard dinâmico com gráficos e estatísticas de desempenho</li>
+              </ul>
+
+              <ul class="tech-tags" aria-label="Tecnologias do Missão Brasil">
+                <li>JavaScript</li>
+                <li>Node.js</li>
+                <li>MySQL</li>
+                <li>HTML</li>
+                <li>CSS</li>
+              </ul>
+
+              <a
+                class="text-link"
+                href="https://github.com/GabrielFonseca508"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="projects.viewCode">Ver código no GitHub</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div class="projects-end reveal">
+          <a
+            class="text-link"
+            href="https://github.com/GabrielFonseca508?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span data-i18n="projects.more">Mais projetos no GitHub</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           4. TECNOLOGIAS & FERRAMENTAS (#tecnologias)
+           ====================================================================== -->
+      <section class="skills section" id="tecnologias" aria-labelledby="skills-title">
+        <div class="container">
+          <div class="skills-heading reveal">
+            <h2 id="skills-title">
+              <span data-i18n="skills.title">TECNOLOGIAS</span><br /><em data-i18n="skills.subtitle">e ferramentas.</em>
+            </h2>
+            <p data-i18n="skills.intro">
+              Stacks e ferramentas que utilizo nos estudos, estágio e projetos práticos.
+            </p>
+          </div>
+
+          <div class="skills-list">
+            <div class="skill-row reveal">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3h-1v3a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-3H8a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3V6a4 4 0 0 1 4-4z" />
+                  <circle cx="9.5" cy="10.5" r="1" />
+                  <circle cx="14.5" cy="10.5" r="1" />
+                </svg>
+                <span data-i18n="skills.ai">IA &amp; SISTEMAS AGÊNTICOS</span>
+              </h3>
+              <ul>
+                <li>LangChain</li>
+                <li>LangGraph</li>
+                <li>RAG</li>
+                <li data-i18n="skills.vectordb">Bancos Vetoriais</li>
+                <li data-i18n="skills.contextEng">Engenharia de Contexto</li>
+                <li>LLMs</li>
+              </ul>
+            </div>
+
+            <div class="skill-row reveal">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+                <span>FRONT-END</span>
+              </h3>
+              <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+
+            <div class="skill-row reveal">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" y1="19" x2="20" y2="19" />
+                </svg>
+                <span>BACK-END</span>
+              </h3>
+              <ul>
+                <li>Java</li>
+                <li>Node.js</li>
+                <li>Python</li>
+              </ul>
+            </div>
+
+            <div class="skill-row reveal">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <ellipse cx="12" cy="5" rx="9" ry="3" />
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                </svg>
+                <span data-i18n="skills.db">BANCO DE DADOS</span>
+              </h3>
+              <ul>
+                <li>SQL</li>
+                <li>MySQL</li>
+              </ul>
+            </div>
+
+            <div class="skill-row reveal">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <rect x="9" y="9" width="6" height="6" />
+                  <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
+                </svg>
+                <span>HARDWARE &amp; IOT</span>
+              </h3>
+              <ul>
+                <li>Arduino</li>
+                <li data-i18n="skills.iot">Internet das Coisas</li>
+              </ul>
+            </div>
+
+            <div class="skill-row reveal">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <line x1="6" y1="3" x2="6" y2="15" />
+                  <circle cx="18" cy="6" r="3" />
+                  <circle cx="6" cy="18" r="3" />
+                  <path d="M18 9a9 9 0 0 1-9 9" />
+                </svg>
+                <span data-i18n="skills.tools">FERRAMENTAS</span>
+              </h3>
+              <ul>
+                <li>Git</li>
+                <li>GitHub</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           5. EXPERIÊNCIA PROFISSIONAL (#experiencia)
+           ====================================================================== -->
+      <section class="experience section container" id="experiencia" aria-labelledby="experience-title">
+        <div class="experience-layout">
+          <div class="experience-heading reveal">
+            <h2 id="experience-title">
+              <span data-i18n="exp.title">EXPERIÊNCIA</span><br /><em data-i18n="exp.subtitle">profissional.</em>
+            </h2>
+          </div>
+
+          <div class="experience-list">
+            <!-- Ticket 1: Stefanini Group -->
+            <article class="experience-ticket reveal">
+              <h3>STEFANINI GROUP</h3>
+              <p class="ticket-role" data-i18n="exp.stefaniniRole">
+                Desenvolvimento Back-End &amp; Arquitetura de Agentes de IA
+              </p>
+              <span class="ticket-period" data-i18n="exp.stefaniniPeriod">
+                Agosto de 2026 — atual
+              </span>
+              <div class="ticket-rule" aria-hidden="true"></div>
+              <p class="ticket-description" data-i18n="exp.stefaniniDesc">
+                Atuação no desenvolvimento de soluções back-end e na coordenação e arquitetura de sistemas com agentes de IA, estruturando pipelines multiagente, fluxos de RAG, engenharia de contexto e automação de processos de engenharia de software em ambiente corporativo.
+              </p>
+            </article>
+
+            <!-- Ticket 2: Exército Brasileiro -->
+            <article class="experience-ticket reveal">
+              <h3 data-i18n="exp.armyOrg">EXÉRCITO BRASILEIRO</h3>
+              <p class="ticket-role" data-i18n="exp.armyRole">
+                Soldado / Motorista · Companhia de Comando da 2ª Divisão
+              </p>
+              <span class="ticket-period">2025 — 2026</span>
+              <div class="ticket-rule" aria-hidden="true"></div>
+              <p class="ticket-description" data-i18n="exp.armyDesc">
+                Atuação na Companhia de Comando da 2ª Divisão do Exército, desenvolvendo disciplina operacional, cumprimento rigoroso de procedimentos, trabalho em equipe, comunicação assertiva e tomada de decisão sob pressão.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           6. FORMAÇÃO ACADÊMICA (#formacao)
+           ====================================================================== -->
+      <section class="education section container" id="formacao" aria-labelledby="education-title">
+        <div class="education-layout">
+          <div class="reveal">
+            <h2 id="education-title">
+              <span data-i18n="edu.title">FORMAÇÃO</span><br /><em data-i18n="edu.subtitle">acadêmica.</em>
+            </h2>
+          </div>
+
+          <ol class="education-timeline">
+            <li class="education-entry reveal">
+              <div>
+                <h3>SPTECH</h3>
+                <p class="education-course">
+                  São Paulo Tech School.<br />
+                  <span data-i18n="edu.sptechCourse">Tecnólogo em Análise e Desenvolvimento de Sistemas.</span><br />
+                  <span data-i18n="edu.sptechPeriod">Cursando o 2º semestre de 5 · Início: 2026 · Conclusão prevista para 2028.</span>
+                </p>
+                <p data-i18n="edu.sptechDesc">
+                  Formação orientada à prática com projetos reais semestrais integrando desenvolvimento web, back-end, bancos de dados relacionais e IoT, como o SafeSoja.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           7. CONTATO (#contato — FAIXA AZUL INTENSO + TICKET CREME)
+           ====================================================================== -->
+      <section class="contact" id="contato" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="contact-layout">
+            <div class="contact-heading reveal">
+              <h2 id="contact-title">
+                <span data-i18n="contact.title">VAMOS</span><br /><em data-i18n="contact.subtitle">conversar?</em>
+              </h2>
+              <p data-i18n="contact.intro">
+                Pode me chamar para falar de projetos, oportunidades de desenvolvimento ou trocar uma ideia sobre tecnologia.
+              </p>
+            </div>
+
+            <div class="contact-ticket reveal">
+              <div class="contact-links">
+                <a
+                  href="https://github.com/GabrielFonseca508"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  <span>GitHub</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/gabriel-eduardofonseca/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                  <span>LinkedIn</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a href="mailto:Gabrieleduardo2801@gmail.com">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  <span class="contact-link-text">
+                    <span data-i18n="contact.email">E-mail</span>
+                    <small class="contact-address">Gabrieleduardo2801@gmail.com</small>
+                  </span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a href="tel:+5511957105763">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                  <span class="contact-link-text">
+                    <span data-i18n="contact.phone">Telefone / WhatsApp</span>
+                    <small class="contact-address">(11) 95710-5763</small>
+                  </span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================================================
+         MODAIS INTERATIVOS DE DETALHES DOS PROJETOS
+         ======================================================================== -->
+    <dialog id="dialog-agentdoc" class="project-preview-dialog" aria-labelledby="dialog-agentdoc-title">
+      <div class="project-preview-header">
+        <h3 id="dialog-agentdoc-title">Agent Doc &amp; Orchestrator · Arquitetura Multiagente</h3>
+        <button class="project-preview-close" type="button" data-close-dialog>
+          <span data-i18n="common.close">Fechar</span> <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="project-dialog-body">
+        <p style="margin-top:0; color:var(--text-on-dark); font-size:1rem;">
+          <strong>Objetivo:</strong> Automatizar a compreensão arquitetural de bases de código e a geração de documentação técnica confiável utilizando agentes especializados.
+        </p>
+        <p style="color:var(--text-muted-dark); font-size:0.925rem;">
+          <strong>Fluxo técnico:</strong> O pipeline realiza <strong>AST parsing</strong> do código-fonte para mapear dependências e assinaturas, indexa fragmentos em <strong>Bancos Vetoriais</strong> para recuperação via <strong>RAG</strong> e coordena agentes especializados em <strong>LangChain / LangGraph</strong> sob regras estritas de <strong>Engenharia de Contexto</strong>.
+        </p>
+      </div>
+    </dialog>
+
+    <dialog id="dialog-safesoja" class="project-preview-dialog" aria-labelledby="dialog-safesoja-title">
+      <div class="project-preview-header">
+        <h3 id="dialog-safesoja-title">SafeSoja · Arquitetura &amp; IoT</h3>
+        <button class="project-preview-close" type="button" data-close-dialog>
+          <span data-i18n="common.close">Fechar</span> <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="project-dialog-body">
+        <p style="margin-top:0; color:var(--text-on-dark); font-size:1rem;">
+          <strong>Objetivo:</strong> Reduzir perdas hídricas e otimizar o cultivo de soja por meio do monitoramento contínuo da umidade do solo.
+        </p>
+        <p style="color:var(--text-muted-dark); font-size:0.925rem;">
+          <strong>Fluxo técnico:</strong> Sensores capacitivos conectados ao microcontrolador <strong>Arduino</strong> capturam os níveis de umidade e enviam os dados para uma API desenvolvida em <strong>Node.js</strong>, que trata as leituras e armazena o histórico no banco relacional <strong>MySQL</strong> para exibição em dashboard web.
+        </p>
+      </div>
+    </dialog>
+
+    <dialog id="dialog-missao" class="project-preview-dialog" aria-labelledby="dialog-missao-title">
+      <div class="project-preview-header">
+        <h3 id="dialog-missao-title">Missão Brasil · Plataforma Full Stack</h3>
+        <button class="project-preview-close" type="button" data-close-dialog>
+          <span data-i18n="common.close">Fechar</span> <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="project-dialog-body">
+        <p style="margin-top:0; color:var(--text-on-dark); font-size:1rem;">
+          <strong>Objetivo:</strong> Criar uma experiência educativa e interativa sobre as Forças Armadas do Brasil unindo conteúdo histórico e gamificação.
+        </p>
+        <p style="color:var(--text-muted-dark); font-size:0.925rem;">
+          <strong>Arquitetura:</strong> Desenvolvida de ponta a ponta com <strong>HTML, CSS e JavaScript</strong> no front-end, servidor <strong>Node.js</strong> com gerenciamento de sessão para login/cadastro e persistência de resultados do quiz e métricas no <strong>MySQL</strong>.
+        </p>
+      </div>
+    </dialog>
+
+    <!-- ========================================================================
+         FOOTER
+         ======================================================================== -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="current-year">2026</span> Gabriel Eduardo Fonseca</p>
+
+        <nav class="footer-social" aria-label="Redes sociais">
+          <a href="https://github.com/GabrielFonseca508" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/gabriel-eduardofonseca/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+
+        <a class="back-top" href="#inicio">
+          <span data-i18n="common.backTop">Voltar ao topo</span>
+          <span aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </footer>
+
+    <!-- ========================================================================
+         JAVASCRIPT: MENU MOBILE, SCROLL SPY, REVEAL, MODAIS E TRADUÇÃO PT/EN
+         ======================================================================== -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Atualiza o ano automaticamente
+        const yearEl = document.getElementById('current-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // 1. Menu Mobile
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        menuToggle.addEventListener('click', () => {
+          const isOpen = mainNav.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        mainNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mainNav.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        // 2. Modais (<dialog>) dos Projetos
+        document.querySelectorAll('[data-open-dialog]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const dialogId = btn.getAttribute('data-open-dialog');
+            const dialog = document.getElementById(dialogId);
+            if (dialog && typeof dialog.showModal === 'function') {
+              dialog.showModal();
+            }
+          });
+        });
+
+        document.querySelectorAll('[data-close-dialog]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const dialog = btn.closest('dialog');
+            if (dialog) dialog.close();
+          });
+        });
+
+        document.querySelectorAll('dialog.project-preview-dialog').forEach((dialog) => {
+          dialog.addEventListener('click', (e) => {
+            const rect = dialog.getBoundingClientRect();
+            const isOutside =
+              e.clientX < rect.left ||
+              e.clientX > rect.right ||
+              e.clientY < rect.top ||
+              e.clientY > rect.bottom;
+            if (isOutside) dialog.close();
+          });
+        });
+
+        // 3. Animações de Entrada (IntersectionObserver)
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+
+        // 4. Scroll-Spy na Navbar
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.main-nav a:not(.nav-contact)');
+
+        window.addEventListener('scroll', () => {
+          let currentId = '';
+          sections.forEach((sec) => {
+            const top = sec.offsetTop - 130;
+            if (window.scrollY >= top) {
+              currentId = sec.getAttribute('id');
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentId}`) {
+              link.classList.add('active');
+            }
+          });
+        });
+
+        // 5. Alternador Bilíngue (PT-BR / EN)
+        const translations = {
+          pt: {
+            'common.skipLink': 'Pular para o conteúdo',
+            'common.close': 'Fechar',
+            'common.backTop': 'Voltar ao topo',
+            'nav.about': 'Sobre mim',
+            'nav.projects': 'Projetos',
+            'nav.skills': 'Tecnologias',
+            'nav.experience': 'Experiência',
+            'nav.education': 'Formação',
+            'nav.contact': 'Vamos conversar',
+            'hero.role': 'Desenvolvedor Full Stack & Engenharia de IA.',
+            'hero.study': 'Atualmente, estudo Análise e Desenvolvimento de Sistemas na',
+            'hero.internship': 'e atuo com desenvolvimento back-end e sistemas agênticos na',
+            'hero.exploreProjects': 'Explorar projetos',
+            'hero.myGithub': 'Meu GitHub',
+            'hero.cvLabel': 'Currículo PDF',
+            'about.title': 'SOBRE',
+            'about.subtitle': 'mim.',
+            'about.armyTitle': 'Exército Brasileiro',
+            'about.armyDetail': 'Soldado / Motorista · 2ª Divisão',
+            'about.sptechDetail': 'Análise e Desenvolvimento de Sistemas',
+            'about.stefaniniDetail': 'Back-End & Sistemas Agênticos de IA',
+            'about.intro': 'Sou Gabriel Eduardo, mas também pode me chamar de',
+            'about.p1': 'Antes de mergulhar de vez no código, servi no Exército Brasileiro como Soldado e Motorista na Companhia de Comando da 2ª Divisão (2025–2026), experiência que moldou minha disciplina, senso de responsabilidade, comunicação clara e capacidade de atuar sob pressão.',
+            'about.p2': 'Hoje curso Análise e Desenvolvimento de Sistemas na São Paulo Tech School (SPTech) e atuo na Stefanini Group, aplicando na prática conceitos de desenvolvimento web, back-end, bancos de dados e soluções corporativas.',
+            'about.p3': 'Tenho forte atuação em Inteligência Artificial e Engenharia de Agentes, projetando e coordenando arquiteturas multiagente com LangChain e LangGraph, pipelines de RAG, bancos vetoriais, AST parsing e engenharia de contexto para análise de código e automação de documentação técnica.',
+            'about.p4': 'No ecossistema de software tradicional, concentro meus estudos e entregas em Java, JavaScript, Node.js, Python e MySQL, conectando lógica sólida, APIs bem estruturadas e integração com hardware e dados.',
+            'projects.title': 'PROJETOS',
+            'projects.subtitle': 'em destaque.',
+            'projects.intro': 'Projetos de arquitetura de IA, sistemas full stack e IoT desenvolvidos na minha trajetória.',
+            'projects.agentTag': 'IA Generativa & Arquitetura Agêntica',
+            'projects.agentLead': 'Orquestração de múltiplos agentes para análise de código e documentação automatizada.',
+            'projects.agentDesc': 'Arquitetura modular baseada em grafos de estado e pipelines agênticos para interpretar repositórios de software, extrair contexto estrutural via AST parsing e gerar documentação técnica padronizada.',
+            'projects.agentContrib': 'Desenvolvi os fluxos de orquestração com LangChain e LangGraph, estratégias de engenharia de contexto e recuperação semântica (RAG) apoiada por bancos vetoriais para minimizar alucinações e manter precisão arquitetural.',
+            'projects.agentF1': 'Orquestração multiagente com roteamento dinâmico de tarefas e revisão',
+            'projects.agentF2': 'Pipelines de RAG com indexação semântica em bancos vetoriais e AST parsing',
+            'projects.agentF3': 'Engenharia de contexto e prompts estruturados para automação técnica',
+            'projects.safesojaTag': 'Software e IoT · Em equipe',
+            'projects.viewCase': 'Conhecer detalhes do projeto',
+            'projects.safesojaLead': 'Monitoramento inteligente da umidade do solo em plantações de soja.',
+            'projects.safesojaDesc': 'Projeto desenvolvido em grupo na SPTech integrando hardware e software para acompanhar condições hídricas na lavoura e apoiar a tomada de decisão agrícola.',
+            'projects.safesojaContrib': 'Atuei com foco nas áreas de back-end e engenharia de dados, estruturando a API em Node.js, o tratamento das leituras enviadas pelos sensores Arduino e a persistência no banco de dados MySQL.',
+            'projects.safesojaF1': 'Coleta contínua de dados via sensores conectados ao Arduino',
+            'projects.safesojaF2': 'API REST em Node.js e armazenamento estruturado em MySQL',
+            'projects.safesojaF3': 'Painel web para visualização de métricas e alertas de umidade',
+            'projects.missaoTag': 'Aplicação Web Full Stack · Individual',
+            'projects.missaoLead': 'Aplicação web interativa dedicada às Forças Armadas do Brasil.',
+            'projects.missaoDesc': 'Projeto individual desenvolvido de ponta a ponta para apresentar informações históricas e institucionais sobre as Forças Armadas de maneira dinâmica e acessível.',
+            'projects.missaoContrib': 'Implementei toda a arquitetura full stack: modelagem relacional em MySQL, rotas e controle de sessão no back-end em Node.js, além do front-end interativo com quiz e dashboard estatístico.',
+            'projects.missaoF1': 'Sistema completo de cadastro, login e controle de sessão',
+            'projects.missaoF2': 'Quiz interativo com registro de pontuação por usuário',
+            'projects.missaoF3': 'Dashboard dinâmico com gráficos e estatísticas de desempenho',
+            'projects.viewCode': 'Ver código no GitHub',
+            'projects.more': 'Mais projetos no GitHub',
+            'skills.title': 'TECNOLOGIAS',
+            'skills.subtitle': 'e ferramentas.',
+            'skills.intro': 'Stacks e ferramentas que utilizo nos estudos, estágio e projetos práticos.',
+            'skills.ai': 'IA & SISTEMAS AGÊNTICOS',
+            'skills.vectordb': 'Bancos Vetoriais',
+            'skills.contextEng': 'Engenharia de Contexto',
+            'skills.db': 'BANCO DE DADOS',
+            'skills.iot': 'Internet das Coisas',
+            'skills.tools': 'FERRAMENTAS',
+            'exp.title': 'EXPERIÊNCIA',
+            'exp.subtitle': 'profissional.',
+            'exp.stefaniniRole': 'Desenvolvimento Back-End & Arquitetura de Agentes de IA',
+            'exp.stefaniniPeriod': 'Agosto de 2026 — atual',
+            'exp.stefaniniDesc': 'Atuação no desenvolvimento de soluções back-end e na coordenação e arquitetura de sistemas com agentes de IA, estruturando pipelines multiagente, fluxos de RAG, engenharia de contexto e automação de processos de engenharia de software em ambiente corporativo.',
+            'exp.armyOrg': 'EXÉRCITO BRASILEIRO',
+            'exp.armyRole': 'Soldado / Motorista · Companhia de Comando da 2ª Divisão',
+            'exp.armyDesc': 'Atuação na Companhia de Comando da 2ª Divisão do Exército, desenvolvendo disciplina operacional, cumprimento rigoroso de procedimentos, trabalho em equipe, comunicação assertiva e tomada de decisão sob pressão.',
+            'edu.title': 'FORMAÇÃO',
+            'edu.subtitle': 'acadêmica.',
+            'edu.sptechCourse': 'Tecnólogo em Análise e Desenvolvimento de Sistemas.',
+            'edu.sptechPeriod': 'Cursando o 2º semestre de 5 · Início: 2026 · Conclusão prevista para 2028.',
+            'edu.sptechDesc': 'Formação orientada à prática com projetos reais semestrais integrando desenvolvimento web, back-end, bancos de dados relacionais e IoT, como o SafeSoja.',
+            'contact.title': 'VAMOS',
+            'contact.subtitle': 'conversar?',
+            'contact.intro': 'Pode me chamar para falar de projetos, oportunidades de desenvolvimento ou trocar uma ideia sobre tecnologia.',
+            'contact.email': 'E-mail',
+            'contact.phone': 'Telefone / WhatsApp'
+          },
+          en: {
+            'common.skipLink': 'Skip to content',
+            'common.close': 'Close',
+            'common.backTop': 'Back to top',
+            'nav.about': 'About me',
+            'nav.projects': 'Projects',
+            'nav.skills': 'Technologies',
+            'nav.experience': 'Experience',
+            'nav.education': 'Education',
+            'nav.contact': "Let's talk",
+            'hero.role': 'Full Stack Developer & AI Engineering.',
+            'hero.study': 'Currently studying Systems Analysis and Development at',
+            'hero.internship': 'and working with back-end development and agentic systems at',
+            'hero.exploreProjects': 'Explore projects',
+            'hero.myGithub': 'My GitHub',
+            'hero.cvLabel': 'Resume PDF',
+            'about.title': 'ABOUT',
+            'about.subtitle': 'me.',
+            'about.armyTitle': 'Brazilian Army',
+            'about.armyDetail': 'Soldier / Driver · 2nd Army Division',
+            'about.sptechDetail': 'Systems Analysis and Development',
+            'about.stefaniniDetail': 'Back-End & Agentic AI Systems',
+            'about.intro': "I'm Gabriel Eduardo, also known as",
+            'about.p1': 'Before diving full-time into software engineering, I served in the Brazilian Army as a Soldier and Driver at the 2nd Army Division Command Company (2025–2026), an experience that shaped my discipline, sense of accountability, clear communication, and ability to perform under pressure.',
+            'about.p2': 'Today I study Systems Analysis and Development at São Paulo Tech School (SPTech) and work at Stefanini Group, applying web development, back-end, database, and enterprise software engineering concepts in practice.',
+            'about.p3': 'I have a strong focus on Artificial Intelligence and Agent Engineering, designing and coordinating multi-agent architectures with LangChain and LangGraph, RAG pipelines, vector databases, AST parsing, and context engineering for code analysis and automated technical documentation.',
+            'about.p4': 'Within traditional software engineering, I focus on Java, JavaScript, Node.js, Python, and MySQL, building solutions that bridge clean logic, structured APIs, and hardware/data integration.',
+            'projects.title': 'FEATURED',
+            'projects.subtitle': 'projects.',
+            'projects.intro': 'AI architecture, full-stack systems, and IoT projects built throughout my journey.',
+            'projects.agentTag': 'Generative AI & Agentic Architecture',
+            'projects.agentLead': 'Multi-agent orchestration for code analysis and automated documentation.',
+            'projects.agentDesc': 'Modular architecture powered by state graphs and agentic pipelines to parse software repositories, extract structural context via AST parsing, and generate standardized technical documentation.',
+            'projects.agentContrib': 'Built orchestration workflows with LangChain and LangGraph, context engineering strategies, and semantic retrieval (RAG) backed by vector databases to minimize hallucinations and ensure architectural accuracy.',
+            'projects.agentF1': 'Multi-agent orchestration with dynamic task routing and iterative review',
+            'projects.agentF2': 'RAG pipelines with semantic indexing in vector databases and AST parsing',
+            'projects.agentF3': 'Context engineering and structured prompts for technical automation',
+            'projects.safesojaTag': 'Software & IoT · Team Project',
+            'projects.viewCase': 'View project details',
+            'projects.safesojaLead': 'Smart soil moisture monitoring for soybean crops.',
+            'projects.safesojaDesc': 'Team project developed at SPTech integrating hardware and software to track field moisture conditions and support agricultural decision-making.',
+            'projects.safesojaContrib': 'Focused on back-end and data engineering, building the Node.js API, processing sensor readings from Arduino, and structuring data storage in MySQL.',
+            'projects.safesojaF1': 'Continuous data collection via Arduino-connected soil sensors',
+            'projects.safesojaF2': 'Node.js REST API and structured storage in MySQL',
+            'projects.safesojaF3': 'Web dashboard for real-time metrics and moisture alerts',
+            'projects.missaoTag': 'Full Stack Web App · Individual',
+            'projects.missaoLead': 'Interactive web platform dedicated to the Brazilian Armed Forces.',
+            'projects.missaoDesc': 'End-to-end individual project designed to present historical and institutional information about the Armed Forces in an engaging, interactive way.',
+            'projects.missaoContrib': 'Built the entire full-stack architecture: MySQL relational modeling, Node.js routes and session management, plus an interactive quiz and analytics dashboard.',
+            'projects.missaoF1': 'Complete user registration, login, and session control system',
+            'projects.missaoF2': 'Interactive quiz with per-user score tracking',
+            'projects.missaoF3': 'Dynamic dashboard with charts and performance statistics',
+            'projects.viewCode': 'View code on GitHub',
+            'projects.more': 'More projects on GitHub',
+            'skills.title': 'TECHNOLOGIES',
+            'skills.subtitle': '& tools.',
+            'skills.intro': 'Stacks and tools I use across coursework, work, and hands-on projects.',
+            'skills.ai': 'AI & AGENTIC SYSTEMS',
+            'skills.vectordb': 'Vector Databases',
+            'skills.contextEng': 'Context Engineering',
+            'skills.db': 'DATABASES',
+            'skills.iot': 'Internet of Things',
+            'skills.tools': 'TOOLS',
+            'exp.title': 'WORK',
+            'exp.subtitle': 'experience.',
+            'exp.stefaniniRole': 'Back-End Development & AI Agent Architecture',
+            'exp.stefaniniPeriod': 'August 2026 — present',
+            'exp.stefaniniDesc': 'Working on back-end development and the coordination and architecture of AI agent systems, building multi-agent pipelines, RAG workflows, context engineering, and software engineering process automation in an enterprise environment.',
+            'exp.armyOrg': 'BRAZILIAN ARMY',
+            'exp.armyRole': 'Soldier / Driver · 2nd Division Command Company',
+            'exp.armyDesc': 'Served at the 2nd Army Division Command Company, developing operational discipline, strict adherence to procedures, teamwork, assertive communication, and decision-making under pressure.',
+            'edu.title': 'ACADEMIC',
+            'edu.subtitle': 'education.',
+            'edu.sptechCourse': 'Associate Degree in Systems Analysis and Development.',
+            'edu.sptechPeriod': '2nd of 5 semesters · Started: 2026 · Expected graduation: 2028.',
+            'edu.sptechDesc': 'Practice-oriented program featuring semester-long real-world projects integrating web development, back-end, relational databases, and IoT, such as SafeSoja.',
+            'contact.title': "LET'S",
+            'contact.subtitle': 'talk?',
+            'contact.intro': 'Feel free to reach out about projects, developer opportunities, or to chat about technology.',
+            'contact.email': 'Email',
+            'contact.phone': 'Phone / WhatsApp'
+          }
+        };
+
+        let currentLang = 'pt';
+        const langToggleBtn = document.getElementById('language-toggle');
+
+        langToggleBtn.addEventListener('click', () => {
+          currentLang = currentLang === 'pt' ? 'en' : 'pt';
+          document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+          langToggleBtn.textContent = currentLang === 'pt' ? 'EN' : 'PT';
+          langToggleBtn.setAttribute(
+            'aria-label',
+            currentLang === 'pt' ? 'Mudar idioma para inglês' : 'Switch language to Portuguese'
+          );
+
+          document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+              el.textContent = translations[currentLang][key];
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
