@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#121110" />
     <title data-i18n="meta.title">
-      Gabriel Eduardo Fonseca · GF508 — Desenvolvedor Full Stack
+      Gabriel Eduardo Fonseca · GabrielFonseca508 — Desenvolvedor Full Stack
     </title>
     <meta
       name="description"
@@ -741,6 +741,16 @@
         aspect-ratio: 16 / 9.2;
         background-color: #16181d;
         overflow: hidden;
+        position: relative;
+      }
+
+      .project-preview-visual > img {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .project-preview figcaption {
@@ -1439,8 +1449,8 @@
          ======================================================================== -->
     <header class="site-header">
       <div class="container header-inner">
-        <a class="wordmark" href="#inicio" aria-label="GF508 — início">
-          <span class="wordmark-symbol" aria-hidden="true">◆</span>GF508<span
+        <a class="wordmark" href="#inicio" aria-label="GabrielFonseca508 — início">
+          <span class="wordmark-symbol" aria-hidden="true">◆</span>GabrielFonseca508<span
             class="wordmark-dot"
             >.</span
           >
@@ -1575,7 +1585,7 @@
                   para que ela apareça automaticamente aqui no GitHub Pages!
                 -->
                 <img
-                  src="assets/images/fotoFrontalSerio.jpg"
+                  src="assets/images/fotoFrontalSerio.jpeg"
                   alt="Retrato de Gabriel Eduardo Fonseca"
                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                 />
@@ -1588,7 +1598,7 @@
                     <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                   </svg>
                   <span style="font-family:var(--font-display); font-weight:800; font-size:1.5rem; letter-spacing:0.04em;">GABRIEL FONSECA</span>
-                  <span style="font-size:0.75rem; color:#94a3b8; margin-top:0.25rem;">assets/images/fotoFrontalSerio.jpg</span>
+                  <span style="font-size:0.75rem; color:#94a3b8; margin-top:0.25rem;">assets/images/fotoFrontalSerio.jpeg</span>
                 </div>
                 <div class="photo-halftone" aria-hidden="true"></div>
               </div>
@@ -1703,7 +1713,8 @@
           </p>
         </div>
 
-        <!-- PROJETO 1: AGENT DOC & ORCHESTRATOR (IA & SISTEMAS AGÊNTICOS) -->
+        <!-- Projeto removido -->
+        <template id="removed-agentdoc-project">
         <article class="project reveal" aria-labelledby="agentdoc-title">
           <div class="project-heading">
             <h3 id="agentdoc-title">AGENT DOC &amp; ORCHESTRATOR<span>.</span></h3>
@@ -1830,8 +1841,9 @@
             </div>
           </div>
         </article>
+        </template>
 
-        <!-- PROJETO 2: SAFE SOJA -->
+        <!-- PROJETO 1: SAFE SOJA -->
         <article class="project reveal" aria-labelledby="safesoja-title">
           <div class="project-heading">
             <h3 id="safesoja-title">SAFE SOJA<span>.</span></h3>
@@ -1841,6 +1853,10 @@
           <div class="project-body">
             <figure class="project-preview">
               <div class="project-preview-visual">
+                <img
+                  src="assets/images/SAFESOJA.jpg"
+                  alt="Interface do projeto SafeSoja"
+                />
                 <!-- Mockup visual técnico do dashboard SafeSoja -->
                 <svg viewBox="0 0 640 368" width="100%" height="100%" fill="none" aria-label="Interface de monitoramento SafeSoja">
                   <rect width="640" height="368" fill="#131720" />
@@ -1953,6 +1969,10 @@
           <div class="project-body">
             <figure class="project-preview">
               <div class="project-preview-visual">
+                <img
+                  src="assets/images/MissaoBrasil.jpg"
+                  alt="Interface do projeto Missao Brasil"
+                />
                 <!-- Mockup visual da aplicação Missão Brasil -->
                 <svg viewBox="0 0 640 368" width="100%" height="100%" fill="none" aria-label="Interface da aplicação Missão Brasil">
                   <rect width="640" height="368" fill="#12161E" />
@@ -2305,19 +2325,7 @@
                   <span aria-hidden="true">↗</span>
                 </a>
 
-                <a href="tel:+5511957105763">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                  </svg>
-                  <span class="contact-link-text">
-                    <span data-i18n="contact.phone">Telefone / WhatsApp</span>
-                    <small class="contact-address">(11) 95710-5763</small>
-                  </span>
-                  <span aria-hidden="true">↗</span>
-                </a>
+                
               </div>
             </div>
           </div>
@@ -2328,23 +2336,6 @@
     <!-- ========================================================================
          MODAIS INTERATIVOS DE DETALHES DOS PROJETOS
          ======================================================================== -->
-    <dialog id="dialog-agentdoc" class="project-preview-dialog" aria-labelledby="dialog-agentdoc-title">
-      <div class="project-preview-header">
-        <h3 id="dialog-agentdoc-title">Agent Doc &amp; Orchestrator · Arquitetura Multiagente</h3>
-        <button class="project-preview-close" type="button" data-close-dialog>
-          <span data-i18n="common.close">Fechar</span> <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="project-dialog-body">
-        <p style="margin-top:0; color:var(--text-on-dark); font-size:1rem;">
-          <strong>Objetivo:</strong> Automatizar a compreensão arquitetural de bases de código e a geração de documentação técnica confiável utilizando agentes especializados.
-        </p>
-        <p style="color:var(--text-muted-dark); font-size:0.925rem;">
-          <strong>Fluxo técnico:</strong> O pipeline realiza <strong>AST parsing</strong> do código-fonte para mapear dependências e assinaturas, indexa fragmentos em <strong>Bancos Vetoriais</strong> para recuperação via <strong>RAG</strong> e coordena agentes especializados em <strong>LangChain / LangGraph</strong> sob regras estritas de <strong>Engenharia de Contexto</strong>.
-        </p>
-      </div>
-    </dialog>
-
     <dialog id="dialog-safesoja" class="project-preview-dialog" aria-labelledby="dialog-safesoja-title">
       <div class="project-preview-header">
         <h3 id="dialog-safesoja-title">SafeSoja · Arquitetura &amp; IoT</h3>
@@ -2521,13 +2512,6 @@
             'projects.title': 'PROJETOS',
             'projects.subtitle': 'em destaque.',
             'projects.intro': 'Projetos de arquitetura de IA, sistemas full stack e IoT desenvolvidos na minha trajetória.',
-            'projects.agentTag': 'IA Generativa & Arquitetura Agêntica',
-            'projects.agentLead': 'Orquestração de múltiplos agentes para análise de código e documentação automatizada.',
-            'projects.agentDesc': 'Arquitetura modular baseada em grafos de estado e pipelines agênticos para interpretar repositórios de software, extrair contexto estrutural via AST parsing e gerar documentação técnica padronizada.',
-            'projects.agentContrib': 'Desenvolvi os fluxos de orquestração com LangChain e LangGraph, estratégias de engenharia de contexto e recuperação semântica (RAG) apoiada por bancos vetoriais para minimizar alucinações e manter precisão arquitetural.',
-            'projects.agentF1': 'Orquestração multiagente com roteamento dinâmico de tarefas e revisão',
-            'projects.agentF2': 'Pipelines de RAG com indexação semântica em bancos vetoriais e AST parsing',
-            'projects.agentF3': 'Engenharia de contexto e prompts estruturados para automação técnica',
             'projects.safesojaTag': 'Software e IoT · Em equipe',
             'projects.viewCase': 'Conhecer detalhes do projeto',
             'projects.safesojaLead': 'Monitoramento inteligente da umidade do solo em plantações de soja.',
@@ -2603,13 +2587,6 @@
             'projects.title': 'FEATURED',
             'projects.subtitle': 'projects.',
             'projects.intro': 'AI architecture, full-stack systems, and IoT projects built throughout my journey.',
-            'projects.agentTag': 'Generative AI & Agentic Architecture',
-            'projects.agentLead': 'Multi-agent orchestration for code analysis and automated documentation.',
-            'projects.agentDesc': 'Modular architecture powered by state graphs and agentic pipelines to parse software repositories, extract structural context via AST parsing, and generate standardized technical documentation.',
-            'projects.agentContrib': 'Built orchestration workflows with LangChain and LangGraph, context engineering strategies, and semantic retrieval (RAG) backed by vector databases to minimize hallucinations and ensure architectural accuracy.',
-            'projects.agentF1': 'Multi-agent orchestration with dynamic task routing and iterative review',
-            'projects.agentF2': 'RAG pipelines with semantic indexing in vector databases and AST parsing',
-            'projects.agentF3': 'Context engineering and structured prompts for technical automation',
             'projects.safesojaTag': 'Software & IoT · Team Project',
             'projects.viewCase': 'View project details',
             'projects.safesojaLead': 'Smart soil moisture monitoring for soybean crops.',
